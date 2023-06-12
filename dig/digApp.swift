@@ -1,10 +1,3 @@
-//
-//  digApp.swift
-//  dig
-//
-//  Created by kakeru on 2023/06/12.
-//
-
 import SwiftUI
 
 @main
