@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Photo: View {
     var body: some View {
-        Image("sparrow")
+        Image("すずめ")
             .resizable()
             .scaledToFill()
             .frame(width: 200, height: 200)

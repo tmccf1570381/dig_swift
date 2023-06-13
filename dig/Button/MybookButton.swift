@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MybookButton: View {
 @State private var isPresented: Bool = false
+    
         var body: some View {
             Button(action: {isPresented = true}) {Text("ずかん")}
             .fullScreenCover(isPresented: $isPresented) {MyBookView()}

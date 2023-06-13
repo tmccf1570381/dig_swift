@@ -5,9 +5,9 @@ struct Discription: View {
         var body: some View {
             List{
                 Section(header:Text("分類")){
-                    Text("鳥類")
+                    Text("とり")
                 }
-                Section(header:Text("大きさ")){
+                Section(header:Text("おおきさ")){
                     Text("14~15cm")
                 }
                 Section(header:Text("説明")){

@@ -22,7 +22,7 @@ struct PageView: View {
                     trailing: 20
             ))}
             
-            Text("スズメ").font(.title).underline().bold()
+            Text("すずめ").font(.title).underline().bold()
             
             Discription()
             
