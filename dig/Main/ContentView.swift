@@ -2,18 +2,54 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest(entity: Content.entity(),sortDescriptors: [])
+//    var items: FetchedResults<Content>
     
-    @FetchRequest(
-        sortDescriptors: [])
-    private var items: FetchedResults<Item>
-    
+//    func addItems(){
+//        let name = ["すずめ","あぶらぜみ","あり","うぐいす","さくら","ちゅーりっぷ","すみれ","ねこ","ぱんじー","あかとんぼ","しおからとんぼ","うめ","おおくわがた"]
+//        let size = ["14-15cm","56-60mm","1-30mm","14-16cm","-","60-100cm","10-15cm","4-5kg","5cm","30㎜-40㎜","33-40mm","-","50-93mm"]
+//        let tag = [1,2,2,1,0,0,0,3,0,2,2,0,2]
+//        let discription = ["test","test","test","test","test","test","test","test","test","test","test","test","test"]
+//        let star = [1,1,1,1,1,1,1,1,1,1,1,3,3]
+//        let long = [34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99]
+//        let lat = [137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437]
+//        if  self.items.count == 0{
+//            for index in 0..<name.count {
+//                let newItem = Content(context: viewContext)
+//                newItem.name = name[index]
+//                newItem.size = size[index]
+//                newItem.tag = Int16(tag[index])
+//                newItem.discription = discription[index]
+//                newItem.star = Int16(star[index])
+//                newItem.long = long[index]
+//                newItem.lat = lat[index]
+//                newItem.flag = false
+//                }
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                fatalError("Unresolved error2 \(error)")
+//            }
+//        }
+//    }
     
     var body: some View {
         NavigationView{
             VStack {
+//                List{
+//                    ForEach(items) {item in
+//                        if((item.name?.isEmpty)==false){
+//                            HStack {
+//                                Text(item.name!).font(.title)
+//                            }
+//                        }
+//                    }
+//                }
                 Spacer()
-                Navigation().padding(.top,40)
+//                Button(action: {addItems()}, label: {Text("butt")})
+//                Navigation().paddi ng(.top,40)
                 Divider()
                 MapView()
                 Spacer()
@@ -21,12 +57,11 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    MybookButton()
-                    Spacer()
                     DiscoveryButton()
                     Spacer()
+                    MybookButton()
+                    Spacer()
                 }
-                Spacer()
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -39,34 +74,29 @@ struct ContentView: View {
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                 }
             }
-            .navigationBarItems(trailing: Button(action: {print("head")},label: {Text("=")}))
+            .navigationBarItems(trailing: Button(action: {
+                print("-----------------")
+            },label: {
+                Image(systemName: "list.bullet").foregroundColor(.gray).font(.system(size: 25))
+            }))
         }
-        
-        
-        
-        
-        
-        
-        
+//        .onAppear(perform: addItems)
     }
-    
 }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(ItemData())
+            .environmentObject(PageData())
+//            .environment(\.managedObjectContext, DataStruct.preview.container.viewContext)
+    }
+}
+
+ 
     
     
     
@@ -108,18 +138,13 @@ struct ContentView: View {
 //    }
 //}
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+//private let itemFormatter: DateFormatter = {
+//    let formatter = DateFormatter()
+//    formatter.dateStyle = .short
+//    formatter.timeStyle = .medium
+//    return formatter
+//}()
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
 
 
 //        NavigationView {

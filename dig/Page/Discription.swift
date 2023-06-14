@@ -1,17 +1,18 @@
 import SwiftUI
 
 struct Discription: View {
-    @State private var isPresented: Bool = false
+    @EnvironmentObject var PageData : PageData
+    
         var body: some View {
             List{
                 Section(header:Text("分類")){
-                    Text("とり")
+                    Text("\(PageData.name)")
                 }
                 Section(header:Text("おおきさ")){
-                    Text("14~15cm")
+                    Text("\(PageData.size)")
                 }
                 Section(header:Text("説明")){
-                    Text("両足で飛び跳ねて素早く移動する。飛翔は直線的であるが、急に飛ぶ方向を変えたりすることもできる。")
+                    Text("\(PageData.discription)")
                 }
             }
             .listStyle(PlainListStyle())
@@ -21,5 +22,6 @@ struct Discription: View {
 struct Discription_Previews: PreviewProvider {
     static var previews: some View {
         Discription()
+            .environmentObject(PageData())
     }
 }

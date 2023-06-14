@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @State private var isPresented: Bool = false
+    @EnvironmentObject var ItemData : ItemData
     
     struct Point: Identifiable {
         let id = UUID()
@@ -28,14 +28,14 @@ struct MapView: View {
             annotationContent:{ point in MapAnnotation(coordinate: point.coordinate,
                                                        anchorPoint: CGPoint(x: 1, y: 1),
                                                        content: {
-                                                        Button(action: {isPresented = true}) {
+                                                        Button(action: {ItemData.pageFlag = true}) {
                                                             VStack {
                                                                 Text("すずめ").bold()
-//                                                                Image(systemName: "leaf.circle.fill").foregroundColor(.green).font(.system(size: 35))
-                                                                Image(systemName: "pawprint.circle.fill").foregroundColor(.red).font(.system(size: 35))
+                                                                false
+                                                                ? Image(systemName: "camera.macro.circle.fill").foregroundColor(.green).font(.system(size: 35))
+                                                                : Image(systemName: "pawprint.circle.fill").foregroundColor(.red).font(.system(size: 35))
                                                             }
-                                                        }
-                                                        .fullScreenCover(isPresented: $isPresented) {PageView()}
+                                                        }.fullScreenCover(isPresented: $ItemData.pageFlag) {PageView()}
                                                        })}
                                                    )
         .frame(height:400)
@@ -53,10 +53,12 @@ struct MapView: View {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+            .environmentObject(ItemData())
+            .environmentObject(PageData())
     }
 }
 
 
 //leaf.circle.fill
 //pawprint.circle.fill
-//fish.circle.fill
+//star.square.fill

@@ -1,35 +1,52 @@
-import CoreData
-
+//import CoreData
+//
 //struct DataStruct {
 //    let container: NSPersistentContainer
-//    
+//
 //    init(){
 //        container = NSPersistentContainer(name: "dig")
 //        
 //        container.loadPersistentStores(completionHandler: {(e, error) in
-//            if let error = error as NSError? {
+//            if (error as NSError?) != nil {
 //                fatalError("error")
 //            }
+//
 //        })
 //    }
-//    
-//
-//    
 //}
 
-//    var data = [
-//        ["name":"すずめ","size":"14-15cm","tag":1,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"あぶらぜみ","size":"56-60mm","tag":2,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"あり","size":"1-30mm","tag":2,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"うぐいす","size":"14-16cm","tag":1,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"さくら","size":"-","tag":0,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"ちゅーりっぷ","size":"60-100cm","tag":0,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"すみれ","size":"10-15cm","tag":0,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"ねこ","size":"4-5kg","tag":3,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"ぱんじー","size":"5cm","tag":0,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"あかとんぼ","size":"30㎜-40㎜","tag":2,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//        ["name":"しおからとんぼ","size":"33-40mm","tag":2,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//    //    ["name":"すずめ","size":"14~15cm","tag":1,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//    //    ["name":"すずめ","size":"14~15cm","tag":1,"discription":"test","star":1,"long":34.99,"lat":137.08520699659437],
-//    ]
+
+//    static var preview: DataStruct = {
+//        let result = DataStruct()
+//        let viewContext = result.container.viewContext
 //
+//        print(viewContext)
+//        var name = ["すずめ","あぶらぜみ","あり","うぐいす","さくら","ちゅーりっぷ","すみれ","ねこ","ぱんじー","あかとんぼ","しおからとんぼ","うめ","おおくわがた"]
+//        var size = ["14-15cm","56-60mm","1-30mm","14-16cm","-","60-100cm","10-15cm","4-5kg","5cm","30㎜-40㎜","33-40mm","-","50-93mm"]
+//        var tag = [1,2,2,1,0,0,0,3,0,2,2,0,2]
+//        var discription = ["test","test","test","test","test","test","test","test","test","test","test","test","test"]
+//        var star = [1,1,1,1,1,1,1,1,1,1,1,3,3]
+//        var long = [34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99,34.99]
+//        var lat = [137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437,137.08520699659437]
+        
+//        if viewContext.count == 0{
+//            for index in 0..<name.count {
+//                let newItem = Content(context: viewContext)
+//                newItem.name = name[index]
+//                newItem.size = size[index]
+//                newItem.tag = Int16(tag[index])
+//                newItem.discription = discription[index]
+//                newItem.star = Int16(star[index])
+//                newItem.long = long[index]
+//                newItem.lat = lat[index]
+//                newItem.flag = false
+//                }
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//            return result
+//    }()

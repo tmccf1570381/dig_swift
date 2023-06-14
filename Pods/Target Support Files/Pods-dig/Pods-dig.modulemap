@@ -1,0 +1,6 @@
+framework module Pods_dig {
+  umbrella header "Pods-dig-umbrella.h"
+
+  export *
+  module * { export * }
+}

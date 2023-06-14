@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct PageView: View {
+    @EnvironmentObject var PageData : PageData
+
     var body: some View {
         VStack {
             Spacer()
@@ -13,34 +15,39 @@ struct PageView: View {
                 trailing: 0
             ))
             
-            Text("⭐️⭐️⭐️⭐️⭐️")
+                Text(String(repeating:"⭐️", count:PageData.star))
                 .font(.title3)
                 .padding(EdgeInsets(
                     top: 0,
-                    leading: 20,
+                    leading: 15,
                     bottom: 0,
-                    trailing: 20
-            ))}
+                    trailing: 0
+            ))
+                Spacer()
+            }
             
-            Text("すずめ").font(.title).underline().bold()
+            Text("\(PageData.name)").font(.title).underline().bold()
             
             Discription()
             
             HStack {
                 Spacer()
-                ReturnButton()
+                ReturnButton2()
                 Spacer()
-                DiscoveryButton()
+                GetButton()
                 Spacer()
             }
             
             Spacer()
         }
     }
+    
 }
 
 struct PageView_Previews: PreviewProvider {
     static var previews: some View {
         PageView()
+            .environmentObject(ItemData())
+            .environmentObject(PageData())
     }
 }

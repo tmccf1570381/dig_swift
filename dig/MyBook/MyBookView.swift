@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MyBookView: View {
-    @State private var isPresented: Bool = false
+    @EnvironmentObject var ItemData : ItemData
+    @EnvironmentObject var PageData : PageData
     
     var columns:[GridItem]=Array(repeating: .init(.flexible()), count: 3)
     
@@ -11,13 +12,18 @@ struct MyBookView: View {
     
     var body: some View {
         VStack {
-            Text("\(userName) のずかん")
-                .foregroundColor(.cyan)
-                .padding(EdgeInsets(
-                    top: 0,leading: 0,bottom: 0,trailing: 0
-                ))
-                .frame(height: 100)
+            ZStack {
+                Button(action: {ItemData.bookFlag = false}, label: {
+                    Image(systemName: "arrowshape.backward").foregroundColor(.gray).font(.system(size: 25))
+                }).offset(x:-165)
+                Text("\(userName) のずかん")
+                    .foregroundColor(.cyan)
+                    .padding(EdgeInsets(
+                        top: 0,leading: 0,bottom: 0,trailing: 0
+                    ))
+                    .frame(height: 100)
                 .font(.system(size: 30, weight: .bold, design: .rounded))
+            }
             Navigation()
             Divider()
             ScrollView {
@@ -25,9 +31,11 @@ struct MyBookView: View {
                     Spacer()
                     LazyVGrid(columns: columns) {
                         ForEach(sample, id: \.self) { img in
-                            Button(action: {isPresented = true}) {
+                            Button(action: {
+                                PageData.name=img
+                                ItemData.pageFlag = true
+                            }) {
                             ZStack(alignment: .topLeading) {
-
                                 Image("\(img)")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -49,7 +57,9 @@ struct MyBookView: View {
                                 }
                                 }
                             }
-                            .fullScreenCover(isPresented: $isPresented) {PageView()}
+                            .fullScreenCover(isPresented: $ItemData.pageFlag) {
+                                PageView()
+                            }
                         }
                     }
                     .padding(.horizontal, 5)
@@ -63,5 +73,7 @@ struct MyBookView: View {
 struct MyBookView_Previews: PreviewProvider {
     static var previews: some View {
         MyBookView()
+            .environmentObject(ItemData())
+            .environmentObject(PageData())
     }
 }
